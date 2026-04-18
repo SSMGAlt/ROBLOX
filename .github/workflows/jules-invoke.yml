@@ -1,0 +1,22 @@
+name: Jules
+
+on:
+  workflow_dispatch:
+    inputs:
+      prompt:
+        description: Task for Jules
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  invoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: google-labs-code/jules-invoke@v1
+        with:
+          prompt: ${{ inputs.prompt }}
+          jules_api_key: ${{ secrets.JULES_API_KEY }}

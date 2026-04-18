@@ -1,0 +1,58 @@
+name: Unit tests
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+concurrency:
+  group: unit-tests-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  windows:
+    name: Windows (MSBuild + run)
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Git long paths
+        run: git config --global core.longpaths true
+      - uses: microsoft/setup-msbuild@v2
+      - name: Base.UnitTest.Run
+        run: msbuild Roblox.sln /m /v:m /t:Base.UnitTest.Run /p:Configuration=Debug /p:Platform=Win32
+      - name: App.UnitTest.Run
+        run: msbuild Roblox.sln /m /v:m /t:App.UnitTest.Run /p:Configuration=Debug /p:Platform=Win32
+      - name: RobloxTest.Run
+        run: msbuild Roblox.sln /m /v:m /t:RobloxTest.Run /p:Configuration=Debug /p:Platform=Win32
+
+  macos-compile:
+    name: macOS (compile test targets)
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Base.UnitTest
+        run: xcodebuild -project MacClient.xcodeproj -target Base.UnitTest -configuration Debug build
+      - name: App.UnitTest
+        run: xcodebuild -project MacClient.xcodeproj -target App.UnitTest -configuration Debug build
+
+  android:
+    name: Android (JVM unit tests)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: zulu
+          java-version: "8"
+      - name: NativeShell testDevDebug
+        working-directory: Android
+        run: chmod +x gradlew && ./gradlew :NativeShell:testDevDebug --stacktrace

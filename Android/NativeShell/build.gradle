@@ -69,10 +69,10 @@ dependencies {
 android {
     signingConfigs {
         packageRelease {
-            keyAlias 'seriously_do_not_delete_this_file'
-            keyPassword 'Sa4e63uCh4$robloxAndroid$'
+            keyAlias System.getenv('ANDROID_KEY_ALIAS') ?: 'seriously_do_not_delete_this_file'
+            keyPassword System.getenv('ANDROID_KEY_PASSWORD') ?: 'Sa4e63uCh4$robloxAndroid$'
             storeFile file('../robloxAndroidPK_DO_NOT_DELETE')
-            storePassword 'Sa4e63uCh4$robloxAndroid$'
+            storePassword System.getenv('ANDROID_STORE_PASSWORD') ?: 'Sa4e63uCh4$robloxAndroid$'
         }
     }
     compileSdkVersion 23
@@ -165,7 +165,10 @@ android {
 
     buildTypes {
         release {
-            signingConfig signingConfigs.packageRelease
+            def storeFilePath = file('../robloxAndroidPK_DO_NOT_DELETE')
+            if (storeFilePath.exists()) {
+                signingConfig signingConfigs.packageRelease
+            }
         }
     }
     splits {

@@ -3,7 +3,7 @@
 This is a fixed and partially extended version of the Roblox source code from 2016. The original source was obtained from [git.rip](https://git.rip/exconfidential/roblox/roblox) (now taken down).
 
 [![Dependabot Updates](https://github.com/SSMGAlt/ROBLOX/actions/workflows/dependabot/dependabot-updates/badge.svg)](https://github.com/SSMGAlt/ROBLOX/actions/workflows/dependabot/dependabot-updates)
-[![CodeQL](https://github.com/SSMGAlt/ROBLOX/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/SSMGAlt/ROBLOX/actions/workflows/github-code-scanning/codeql)
+[![CodeQL](https://github.com/SSMGAlt/ROBLOX/actions/workflows/codeql.yml/badge.svg)](https://github.com/SSMGAlt/ROBLOX/actions/workflows/codeql.yml)
 
 [![Star History Chart](https://api.star-history.com/svg?repos=SSMGAlt/ROBLOX&type=Date)](https://star-history.com/#SSMGAlt/ROBLOX&Date)
 
