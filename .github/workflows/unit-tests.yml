@@ -23,10 +23,10 @@ jobs:
     name: Windows (MSBuild + run)
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Git long paths
         run: git config --global core.longpaths true
-      - uses: microsoft/setup-msbuild@v2
+      - uses: microsoft/setup-msbuild@v3
       - name: Base.UnitTest.Run
         run: msbuild Roblox.sln /m /v:m /t:Base.UnitTest.Run /p:Configuration=Debug /p:Platform=Win32
       - name: App.UnitTest.Run
@@ -38,7 +38,7 @@ jobs:
     name: macOS (compile test targets)
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Base.UnitTest
         run: xcodebuild -project MacClient.xcodeproj -target Base.UnitTest -configuration Debug build
       - name: App.UnitTest
@@ -48,8 +48,8 @@ jobs:
     name: Android (JVM unit tests)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-java@v5
         with:
           distribution: zulu
           java-version: "8"
