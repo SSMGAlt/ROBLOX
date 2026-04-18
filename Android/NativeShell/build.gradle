@@ -59,8 +59,8 @@ dependencies {
     compile 'com.android.support:multidex:1.0.0'
 
     // for testing
-    testCompile 'junit:junit:4.12'
-    androidTestCompile 'junit:junit:4.12'
+    testCompile 'junit:junit:4.13.2'
+    androidTestCompile 'junit:junit:4.13.2'
     androidTestCompile 'com.android.support.test:runner:0.4'
     // Set this dependency to use JUnit 4 rules
     androidTestCompile 'com.android.support.test:rules:0.4'
