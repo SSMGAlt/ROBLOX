@@ -47,7 +47,7 @@ dependencies {
         exclude module: 'support-v4'
     }
     compile 'com.android.support:design:23.2.0'
-    compile 'com.facebook.android:facebook-android-sdk:4.2.0'
+    compile 'com.facebook.android:facebook-android-sdk:18.2.3'
     compile('com.crashlytics.sdk.android:crashlytics:2.5.1@aar') {
         transitive = true;
     }
